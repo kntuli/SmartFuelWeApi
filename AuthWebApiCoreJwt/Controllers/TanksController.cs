@@ -11,6 +11,7 @@ namespace AuthWebApiCoreJwt.Controllers
 {
     [Route("api")]
     [ApiController]
+    [Produces("application/json")]
     public class TanksController : ControllerBase
     {
         private readonly ITankDataProvider tankDataProvider;
