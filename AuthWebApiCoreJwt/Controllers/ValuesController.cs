@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuthWebApiCoreJwt.Controllers
 {
-    [Route("api")]
+    [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class ValuesController : ControllerBase
@@ -16,7 +16,6 @@ namespace AuthWebApiCoreJwt.Controllers
 
         // GET api/values
         [HttpGet]
-        [Route("values")]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
