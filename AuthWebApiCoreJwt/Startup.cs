@@ -38,8 +38,13 @@ namespace AuthWebApiCoreJwt
                 });
             });
 
-           // var connectionString = Configuration.GetConnectionString("DBConnectionString2");
-           // services.AddDbContext<AmenDBContext>(options => options.UseSqlServer(connectionString));
+            services.Configure<IISOptions>(options =>
+            {
+                options.AutomaticAuthentication = false;
+            });
+
+            // var connectionString = Configuration.GetConnectionString("DBConnectionString2");
+            // services.AddDbContext<AmenDBContext>(options => options.UseSqlServer(connectionString));
 
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IPasswordHasher, PasswordHasher>();
@@ -81,7 +86,7 @@ namespace AuthWebApiCoreJwt
             app.UseStaticFiles();
             app.UseCors("EnableCORS");
             app.UseAuthentication();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
