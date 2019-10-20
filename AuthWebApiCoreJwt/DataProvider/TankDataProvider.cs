@@ -82,5 +82,39 @@ namespace AuthWebApiCoreJwt.DataProvider
                     commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<IEnumerable<Tanks>> GetTankByIDandDate(int ID, DateTime dateform, DateTime dateto)
+        {
+            using (var sqlConnection = new MySqlConnection(ConnectionString()))
+            {
+                await sqlConnection.OpenAsync();
+                var dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@TankID", ID);
+                dynamicParameters.Add("@DateFrom", dateform);
+                dynamicParameters.Add("@DateTo", dateto);
+                return await sqlConnection.QueryAsync<Tanks>(
+                    "sp_TankByIDandPeriod",
+                    dynamicParameters,
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task<IEnumerable<Tanks>> GetTankByIDandDateTime(int ID, DateTime dateform, DateTime dateto, DateTime timeform, DateTime timeto)
+        {
+            using (var sqlConnection = new MySqlConnection(ConnectionString()))
+            {
+                await sqlConnection.OpenAsync();
+                var dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@TankID", ID);
+                dynamicParameters.Add("@DateFrom", dateform);
+                dynamicParameters.Add("@DateTo", dateto);
+                dynamicParameters.Add("@TimeFrom", timeform);
+                dynamicParameters.Add("@TimeTo", timeto);
+                return await sqlConnection.QueryAsync<Tanks>(
+                    "sp_TankByIDandDateTime",
+                    dynamicParameters,
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

@@ -48,5 +48,19 @@ namespace AuthWebApiCoreJwt.Controllers
         {
             return await tankDataProvider.GetTankByID2(id, intervalnum, intervaltype);
         }
+
+        [HttpGet]
+        [Route("tanksbyidanddate/{id}/{datefrom}/{dateto}")]
+        public async Task<IEnumerable<Tanks>> GetTanksByIDandDate(int id, DateTime datefrom, DateTime dateto)
+        {
+            return await tankDataProvider.GetTankByIDandDate(id, datefrom, dateto);
+        }
+
+        [HttpGet]
+        [Route("tanksbyidanddatetime/{id}/{datefrom}/{dateto}/{timefrom}/{timeto}")]
+        public async Task<IEnumerable<Tanks>> GetTanksByIDandDate(int id, DateTime datefrom, DateTime dateto, DateTime timefrom, DateTime timeto)
+        {
+            return await tankDataProvider.GetTankByIDandDateTime(id, datefrom, dateto, timefrom, timeto);
+        }
     }
 }

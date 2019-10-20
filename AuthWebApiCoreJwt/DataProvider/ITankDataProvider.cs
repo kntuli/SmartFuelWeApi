@@ -14,5 +14,7 @@ namespace AuthWebApiCoreJwt.DataProvider
         Task<IEnumerable<Tanks>> GetTankByID(int ID);
 
         Task<IEnumerable<Tanks>> GetTankByID2(int ID, int intervalnum, string intervaltype);
+        Task<IEnumerable<Tanks>> GetTankByIDandDate(int ID, DateTime datefrom, DateTime dateto);
+        Task<IEnumerable<Tanks>> GetTankByIDandDateTime(int ID, DateTime datefrom, DateTime dateto, DateTime timefrom, DateTime timeto);
     }
 }
