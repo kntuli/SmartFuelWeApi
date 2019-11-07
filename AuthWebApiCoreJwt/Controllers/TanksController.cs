@@ -11,13 +11,27 @@ namespace AuthWebApiCoreJwt.Controllers
 {
     [Route("api")]
     [ApiController]
-    [Produces("application/json")]
+    //[Produces("application/json")]
     public class TanksController : ControllerBase
     {
         private readonly ITankDataProvider tankDataProvider;
         public TanksController(ITankDataProvider tankDataProvider)
         {
             this.tankDataProvider = tankDataProvider;
+        }
+
+        [HttpGet]
+        [Route("sitesbyid/{id}")]
+        public async Task<IEnumerable<Tanks>> GetSitesByID(int id)
+        {
+            return await tankDataProvider.GetSitesByID(id);
+        }
+
+        [HttpGet]
+        [Route("auth/{email}/{passw}")]
+        public async Task<IEnumerable<Users>> GetUserByEmailandPassword(string email, string passw)
+        {
+            return await tankDataProvider.GetUserByEmailandPassword(email, passw);
         }
 
         [HttpGet]

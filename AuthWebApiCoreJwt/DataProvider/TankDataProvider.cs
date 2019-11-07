@@ -27,6 +27,35 @@ namespace AuthWebApiCoreJwt.DataProvider
             return _configuration.GetConnectionString("MySqlDBConnectionString").ToString();
         }
 
+        public async Task<IEnumerable<Tanks>> GetSitesByID(int ID)
+        {
+            using (var sqlConnection = new MySqlConnection(ConnectionString()))
+            {
+                await sqlConnection.OpenAsync();
+                var dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@userID", ID);
+                return await sqlConnection.QueryAsync<Tanks>(
+                    "sp_UserSites",
+                    dynamicParameters,
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task<IEnumerable<Users>> GetUserByEmailandPassword(string Email, string Password)
+        {
+            using (var sqlConnection = new MySqlConnection(ConnectionString()))
+            {
+                await sqlConnection.OpenAsync();
+                var dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@email", Email);
+                dynamicParameters.Add("@passw", Password);
+                return await sqlConnection.QueryAsync<Users>(
+                    "sp_UserAuth",
+                    dynamicParameters,
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public async Task<IEnumerable<Tanks>> GetTanks()
         {
             using (var sqlConnection = new MySqlConnection(ConnectionString()))

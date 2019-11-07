@@ -10,7 +10,7 @@ namespace AuthWebApiCoreJwt.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Produces("application/json")]
+    //[Produces("application/json")]
     public class ValuesController : ControllerBase
     {
 

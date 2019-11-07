@@ -41,11 +41,14 @@ namespace AuthWebApiCoreJwt.Models
         public int Forecourt { get; set; }
         public decimal ReorderLevel { get; set; }
         public decimal CurrentLevel { get; set; }
+        public decimal LevelHeight { get; set; }
         public decimal CurrentDip { get; set; }
         public string ActionStatus { get; set; }
         public string GUID { get; set; }
         public string Code { get; set; }
         public string Grade { get; set; }
+        public int GeneratorOnOff { get; set; }
+        public int BatteryOnOff { get; set; }
 
     }
 }

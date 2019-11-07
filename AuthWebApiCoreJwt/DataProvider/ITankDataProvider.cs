@@ -8,6 +8,8 @@ namespace AuthWebApiCoreJwt.DataProvider
 {
     public interface ITankDataProvider
     {
+        Task<IEnumerable<Users>> GetUserByEmailandPassword(string email, string password);
+        Task<IEnumerable<Tanks>> GetSitesByID(int ID);
         Task<IEnumerable<Tanks>> GetTanks();
         Task<IEnumerable<Tanks>> GetTankByAny(string anyVar);
 
